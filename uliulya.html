@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDIA INTERAKTIF BERBASIS WEB - SD NEGERI 018/VIII MUARA TEBO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-grad-1: #2ecc71;
+            --bg-grad-2: #f1c40f;
+            --bg-grad-3: #e67e22;
+            --menu-grad-1: #ffeaa7;
+            --menu-grad-2: #55efc4;
+            --menu-grad-3: #74b9ff;
+            --primary: #00b894;
+            --secondary: #fdcb6e;
+            --accent: #ff7675;
+            --dark: #2d3436;
+            --light: #dfe6e9;
+        }
+
+        body.theme-hutan {
+            --bg-grad-1: #2ecc71; --bg-grad-2: #27ae60; --bg-grad-3: #1e8449;
+            --menu-grad-1: #d4efdf; --menu-grad-2: #abebc6; --menu-grad-3: #82e0aa;
+        }
+        body.theme-laut {
+            --bg-grad-1: #00cec9; --bg-grad-2: #0984e3; --bg-grad-3: #6c5ce7;
+            --menu-grad-1: #81ecec; --menu-grad-2: #74b9ff; --menu-grad-3: #a29bfe;
+        }
+        body.theme-sawah {
+            --bg-grad-1: #f1c40f; --bg-grad-2: #e67e22; --bg-grad-3: #d35400;
+            --menu-grad-1: #fef9e7; --menu-grad-2: #fcf3cf; --menu-grad-3: #f9e79f;
+        }
+        body.theme-malam {
+            --bg-grad-1: #2c3e50; --bg-grad-2: #8e44ad; --bg-grad-3: #1a252f;
+            --menu-grad-1: #ebdef0; --menu-grad-2: #d7bde2; --menu-grad-3: #c39bd3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2), var(--bg-grad-3));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* CONFETTI LAYER */
+        #confetti-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+        .confetti-item {
+            position: absolute;
+            top: -40px;
+            font-size: 24px;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(90deg, #00b894, #fdcb6e, #ff7675);
+            padding: 15px 20px;
+            text-align: center;
+            border-bottom: 5px dashed #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .sun-cloud-container {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: floatUpDown 2.5s ease-in-out infinite alternate;
+        }
+
+        .cloud-right {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            animation: floatUpDown 3s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatUpDown {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+
+        .sun {
+            width: 42px;
+            height: 42px;
+            background: #ffeaa7;
+            border-radius: 50%;
+            box-shadow: 0 0 18px #ffeaa7, 0 0 30px #fdcb6e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .cloud {
+            background: #fff;
+            padding: 6px 14px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 800;
+            color: #0984e3;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-family: 'Fredoka', cursive;
+            font-size: 1.85rem;
+            color: #fff;
+            text-shadow: 2px 3px 0px rgba(0,0,0,0.25);
+            margin-bottom: 4px;
+        }
+
+        header p {
+            font-weight: 800;
+            color: #fff;
+            font-size: 0.95rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+        }
+
+        .badge-jump {
+            display: inline-block;
+            background: #ff7675;
+            color: white;
+            padding: 6px 18px;
+            border-radius: 25px;
+            font-family: 'Fredoka', cursive;
+            font-size: 0.95rem;
+            margin-top: 8px;
+            animation: jump 0.55s infinite alternate;
+            box-shadow: 0 4px 0 #d63031;
+            border: 2px solid #fff;
+        }
+
+        @keyframes jump {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-7px); }
+        }
+
+        /* TICKER TAPE */
+        .ticker-wrap {
+            background: #2d3436;
+            color: #ffeaa7;
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: 800;
+            font-size: 1rem;
+            border-bottom: 3px solid #fdcb6e;
+        }
+
+        .ticker {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 20s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* TOP CONTROLS */
+        .top-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: rgba(255,255,255,0.25);
+            flex-wrap: wrap;
+        }
+
+        .btn-ctrl {
+            background: #fff;
+            border: 2px solid #dfe6e9;
+            padding: 7px 14px;
+            border-radius: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #b2bec3;
+            transition: 0.15s;
+            font-size: 0.85rem;
+            color: #2d3436;
+        }
+
+        .btn-ctrl:hover {
+            transform: scale(1.05);
+            background: #ffeaa7;
+        }
+
+        .btn-ctrl:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #b2bec3;
+        }
+
+        /* MAIN LAYOUT */
+        .main-container {
+            display: flex;
+            min-height: calc(100vh - 190px);
+        }
+
+        /* LEFT MENU */
+        nav {
+            width: 285px;
+            background: linear-gradient(180deg, var(--menu-grad-1), var(--menu-grad-2), var(--menu-grad-3));
+            padding: 15px;
+            border-right: 4px dashed #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            flex-shrink: 0;
+        }
+
+        .student-mini-card {
+            background: #fff;
+            padding: 12px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+            border: 3px solid #fdcb6e;
+            margin-bottom: 4px;
+        }
+
+        .mini-avatar {
+            font-size: 2.3rem;
+            display: inline-block;
+            background: #ffeaa7;
+            width: 56px;
+            height: 56px;
+            line-height: 56px;
+            border-radius: 50%;
+            border: 3px solid #00b894;
+        }
+
+        .level-title {
+            font-family: 'Fredoka', cursive;
+            font-size: 1rem;
+            color: #00b894;
+            margin-top: 4px;
+        }
+
+        .progress-container {
+            background: #dfe6e9;
+            border-radius: 10px;
+            height: 14px;
+            width: 100%;
+            margin-top: 6px;
+            overflow: hidden;
+            border: 1px solid #b2bec3;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #fdcb6e, #e17055);
+            height: 100%;
+            width: 10%;
+            transition: width 0.4s ease;
+        }
+
+        .stars-text {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #e67e22;
+            margin-top: 3px;
+        }
+
+        .menu-btn {
+            background: #fff;
+            border: 2px solid #dfe6e9;
+            padding: 11px 14px;
+            text-align: left;
+            border-radius: 14px;
+            font-weight: 800;
+            color: var(--dark);
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b2bec3;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.92rem;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.05) rotate(-1.5deg);
+            background: #ffeaa7;
+            border-color: #fdcb6e;
+        }
+
+        .menu-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 #b2bec3;
+        }
+
+        .menu-btn.active {
+            background: #00b894;
+            color: white;
+            border-color: #00a884;
+            box-shadow: 0 5px 0 #006644;
+        }
+
+        /* CONTENT AREA */
+        .content {
+            flex: 1;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 25px 0 0 0;
+            box-shadow: -5px -5px 15px rgba(0,0,0,0.08);
+            overflow-y: auto;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.35s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-family: 'Fredoka', cursive;
+            color: #2d3436;
+            margin-bottom: 18px;
+            font-size: 1.75rem;
+            border-bottom: 4px solid #fdcb6e;
+            padding-bottom: 6px;
+            display: inline-block;
+        }
+
+        /* PROFILE */
+        .profile-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(180deg, #fff, #fff9f9);
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            max-width: 560px;
+            margin: 10px auto;
+            border: 4px solid #ff7675;
+        }
+
+        .avatar-frame {
+            width: 145px;
+            height: 145px;
+            border: 7px solid #ff7675;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            background: #ffeaa7;
+            margin-bottom: 18px;
+            box-shadow: 0 8px 20px rgba(255, 118, 117, 0.35);
+            animation: floatUpDown 2.5s ease-in-out infinite alternate;
+        }
+
+        .quote-box {
+            background: #ffeaa7;
+            padding: 15px 20px;
+            border-radius: 18px;
+            font-style: italic;
+            font-weight: 800;
+            color: #d35400;
+            margin: 15px 0;
+            border-left: 6px solid #e67e22;
+        }
+
+        /* FORM DATA SISWA & SELFIE */
+        .form-siswa {
+            background: #fff;
+            padding: 25px;
+            border-radius: 25px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 3px solid #74b9ff;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: #2d3436;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 3px solid #dfe6e9;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #00b894;
+        }
+
+        .avatar-choices {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .avatar-opt {
+            background: #f1f2f6;
+            border: 3px solid #dfe6e9;
+            padding: 12px 8px;
+            text-align: center;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 800;
+        }
+
+        .avatar-opt span {
+            font-size: 2rem;
+            display: block;
+        }
+
+        .avatar-opt.selected {
+            border-color: #00b894;
+            background: #55efc4;
+            transform: scale(1.05);
+        }
+
+        .camera-box {
+            background: #f1f2f6;
+            padding: 15px;
+            border-radius: 18px;
+            text-align: center;
+            margin-top: 10px;
+            border: 2px dashed #0984e3;
+        }
+
+        .camera-preview-wrap {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        video#webcam, canvas#selfieCanvas {
+            width: 180px;
+            height: 180px;
+            border-radius: 18px;
+            background: #2d3436;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        /* BUTTONS */
+        .btn-main {
+            background: #00b894;
+            color: white;
+            border: none;
+            padding: 13px 22px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            border-radius: 16px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #006644;
+            transition: 0.15s;
+            display: inline-block;
+        }
+
+        .btn-main:hover {
+            filter: brightness(1.05);
+            transform: scale(1.02);
+        }
+
+        .btn-main:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 #006644;
+        }
+
+        .btn-blue { background: #0984e3; box-shadow: 0 5px 0 #0652dd; }
+        .btn-orange { background: #e67e22; box-shadow: 0 5px 0 #d35400; }
+        .btn-pink { background: #ff7675; box-shadow: 0 5px 0 #d63031; }
+        .btn-purple { background: #6c5ce7; box-shadow: 0 5px 0 #4834d4; }
+
+        /* TP & KKTP */
+        .tp-list {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .tp-item {
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 18px;
+            border-left: 8px solid #00b894;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        .kktp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        .kktp-card {
+            padding: 18px;
+            border-radius: 20px;
+            color: #fff;
+            text-align: center;
+            font-weight: 800;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        /* MATERI CARDS - VARIATIVE SHAPES & COLORS */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+            margin-top: 15px;
+        }
+
+        .materi-card {
+            padding: 22px 20px 38px 20px;
+            color: #fff;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .materi-card:hover {
+            transform: translateY(-8px) scale(1.03);
+        }
+
+        .materi-card h3 {
+            font-family: 'Fredoka', cursive;
+            font-size: 1.35rem;
+            margin-bottom: 8px;
+        }
+
+        .materi-card p {
+            font-size: 0.96rem;
+            line-height: 1.45;
+            font-weight: 700;
+        }
+
+        .materi-card::after {
+            content: "🔊 KLIK AKU!";
+            position: absolute;
+            bottom: 10px;
+            right: 14px;
+            background: rgba(255,255,255,0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+
+        /* Bentuk & Warna Beda Tiap Kartu */
+        .card-produsen {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border-radius: 45px 15px 45px 15px;
+        }
+        .card-kon1 {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            border-radius: 15px;
+            transform: rotate(-1.5deg);
+        }
+        .card-kon2 {
+            background: linear-gradient(135deg, #ff7675, #d63031);
+            border-radius: 15px 45px 15px 45px;
+            transform: rotate(1.5deg);
+        }
+        .card-kon3 {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            border-radius: 35px;
+        }
+        .card-pengurai {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            border-radius: 50px 50px 15px 15px;
+        }
+        .card-rantai {
+            background: linear-gradient(135deg, #0984e3, #00cec9);
+            border-radius: 15px 15px 45px 45px;
+        }
+
+        .contoh-ekosistem {
+            margin-top: 25px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 22px;
+            border: 3px dashed #00b894;
+        }
+
+        .chain-pill {
+            background: #fef9e7;
+            border: 2px solid #f1c40f;
+            padding: 12px 16px;
+            border-radius: 15px;
+            margin-top: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .chain-pill:hover {
+            background: #ffeaa7;
+            transform: scale(1.01);
+        }
+
+        /* JARING MAKANAN */
+        .jaring-box {
+            background: #fff;
+            padding: 22px;
+            border-radius: 24px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+            border: 3px solid #6c5ce7;
+        }
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .compare-card {
+            padding: 16px;
+            border-radius: 18px;
+            font-weight: 800;
+        }
+
+        /* CANVAS BOXES (VIDEO AI & SIMULASI) */
+        .canvas-stage {
+            background: #2d3436;
+            padding: 20px;
+            border-radius: 25px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border: 5px solid #fdcb6e;
+        }
+
+        canvas.edu-canvas {
+            background: #ffffff;
+            border-radius: 18px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 15px auto;
+        }
+
+        /* GAME & KUIS */
+        .game-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .game-box, .quiz-box {
+            background: #fff;
+            padding: 25px;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 3px solid #00b894;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 14px 18px;
+            margin: 10px 0;
+            background: #f1f2f6;
+            border: 3px solid #dfe6e9;
+            border-radius: 15px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option-btn:hover {
+            background: #ffeaa7;
+            border-color: #fdcb6e;
+            transform: translateX(6px);
+        }
+
+        .quiz-question-card {
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 18px;
+            margin-bottom: 15px;
+            border-left: 6px solid #0984e3;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: #fff;
+            border: 2px solid #dfe6e9;
+            border-radius: 12px;
+            margin-top: 8px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .radio-label:hover {
+            background: #e8f8f5;
+            border-color: #00b894;
+        }
+
+        /* SERTIFIKAT */
+        .sertifikat-wrapper {
+            background: #fff;
+            border: 10px double #00b894;
+            outline: 4px solid #fdcb6e;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 820px;
+            margin: 20px auto;
+            position: relative;
+            text-align: center;
+            color: #2d3436;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .sertifikat-watermark {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .sertifikat-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .kop-surat {
+            border-bottom: 4px double #2d3436;
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+        }
+
+        .kop-surat h4 {
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+        }
+
+        .kop-surat h3 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #006644;
+        }
+
+        .cert-title {
+            font-family: 'Fredoka', cursive;
+            font-size: 2rem;
+            color: #d35400;
+            margin: 10px 0 4px 0;
+            letter-spacing: 1px;
+        }
+
+        .cert-photo-box {
+            width: 110px;
+            height: 110px;
+            margin: 12px auto;
+            border-radius: 50%;
+            border: 4px solid #00b894;
+            overflow: hidden;
+            background: #ffeaa7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+        }
+
+        .cert-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cert-signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 0 30px;
+            font-weight: 800;
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 820px) {
+            .main-container {
+                flex-direction: column;
+            }
+            nav {
+                width: 100%;
+                border-right: none;
+                border-bottom: 4px dashed #fff;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .student-mini-card {
+                width: 100%;
+            }
+            .menu-btn {
+                width: calc(50% - 6px);
+                font-size: 0.85rem;
+                padding: 10px;
+            }
+            .sun-cloud-container, .cloud-right {
+                display: none;
+            }
+            .content {
+                border-radius: 20px 20px 0 0;
+                padding: 18px;
+            }
+            .compare-grid {
+                grid-template-columns: 1fr;
+            }
+            .cert-signatures {
+                flex-direction: column;
+                gap: 35px;
+            }
+        }
+
+        /* PRINT ONLY CERTIFICATE */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #sertifikatArea, #sertifikatArea * {
+                visibility: visible;
+            }
+            #sertifikatArea {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body class="theme-hutan">
+
+<div id="confetti-container"></div>
+
+<!-- HEADER -->
+<header>
+    <div class="sun-cloud-container">
+        <div class="sun">☀️</div>
+        <div class="cloud">☁️ Ekosistem Ceria</div>
+    </div>
+    <div class="cloud-right">
+        <div class="cloud">🦋 IPAS Kelas 3</div>
+    </div>
+    <h1>MEDIA INTERAKTIF BERBASIS WEB</h1>
+    <p>SD NEGERI 018/VIII MUARA TEBO • IPAS KELAS 3 SEMESTER GANJIL</p>
+    <div class="badge-jump">🚀 PETUALANGAN RANTAI & JARING MAKANAN 🌿</div>
+</header>
+
+<!-- PITA BERJALAN -->
+<div class="ticker-wrap">
+    <div class="ticker">
+        AYO BELAJAR SAMBIL BERMAIN! 🌱🐭🐍🦅🍄 • BERSAMA IBU ULI ULYA, S.Pd • SD NEGERI 018/VIII MUARA TEBO • KUMPULKAN BINTANG & RAIH GELAR RAJA HUTAN! 👑
+    </div>
+</div>
+
+<!-- TOP CONTROLS -->
+<div class="top-controls">
+    <button class="btn-ctrl" onclick="setTheme('theme-hutan')">🌳 Tema Hutan</button>
+    <button class="btn-ctrl" onclick="setTheme('theme-laut')">🌊 Tema Laut</button>
+    <button class="btn-ctrl" onclick="setTheme('theme-sawah')">🌾 Tema Sawah</button>
+    <button class="btn-ctrl" onclick="setTheme('theme-malam')">🌙 Tema Malam</button>
+    <button class="btn-ctrl" id="btnMusik" onclick="toggleMusik()" style="background:#ffeaa7;">🎵 Musik Ceria</button>
+    <button class="btn-ctrl" onclick="launchConfetti()" style="background:#ff7675; color:#fff;">🎉 Confetti</button>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="main-container">
+    <!-- MENU KIRI -->
+    <nav>
+        <div class="student-mini-card">
+            <div class="mini-avatar" id="navAvatarIcon">🦊</div>
+            <div style="font-weight:900; font-size:0.95rem; margin-top:4px;" id="navStudentName">Petualang Cilik</div>
+            <div class="level-title" id="navLevelTitle">Level 1: Bibit 🌱</div>
+            <div class="progress-container">
+                <div class="progress-fill" id="navProgressBar"></div>
+            </div>
+            <div class="stars-text" id="navStarsText">⭐ 0 Bintang</div>
+        </div>
+
+        <button class="menu-btn active" onclick="openSection('profil', this)">1. 👩‍🏫 Profil Ibu Uli Ulya</button>
+        <button class="menu-btn" onclick="openSection('dataSiswa', this)">2. 📸 Data Siswa + Selfie</button>
+        <button class="menu-btn" onclick="openSection('tujuan', this)">3. 🎯 Tujuan & KKTP</button>
+        <button class="menu-btn" onclick="openSection('materi', this)">4. 📚 Materi Seru</button>
+        <button class="menu-btn" onclick="openSection('jaring', this)">5. 🕸️ Jaring Makanan (Baru!)</button>
+        <button class="menu-btn" onclick="openSection('videoAI', this)">6. 🎬 Video Animasi AI</button>
+        <button class="menu-btn" onclick="openSection('game', this)">7. 🎮 Game 1000 Soal</button>
+        <button class="menu-btn" onclick="openSection('simulasi', this)">8. 🌍 Simulasi Ekosistem</button>
+        <button class="menu-btn" onclick="openSection('kuis', this)">9. 📝 Kuis Acak</button>
+        <button class="menu-btn" onclick="openSection('sertifikat', this)">10. 🏆 Rekap & Sertifikat</button>
+    </nav>
+
+    <!-- CONTENT AREA -->
+    <main class="content">
+
+        <!-- 1. PROFIL -->
+        <section id="profil" class="section active">
+            <h2>👩‍🏫 Profil Pengembang & Guru</h2>
+            <div class="profile-box">
+                <div class="avatar-frame">👩‍🏫</div>
+                <h3 style="font-family:'Fredoka',cursive; font-size:1.7rem; color:#00b894;">Uli Ulya, S.Pd</h3>
+                <p style="font-weight:800; color:#636e72; margin-top:4px;">Guru Kelas 3 - IPAS</p>
+                <p style="font-weight:800; color:#2d3436;">SD Negeri 018/VIII Muara Tebo</p>
+                <span style="background:#74b9ff; color:#fff; padding:5px 15px; border-radius:20px; font-weight:800; font-size:0.85rem; margin-top:8px;">
+                    🏅 Guru Pejuang Digitalisasi Kab. Tebo
+                </span>
+                <div class="quote-box">
+                    “Teknologi tidak akan pernah menggantikan peran seorang guru”
+                </div>
+                <button class="btn-main btn-pink" onclick="speakText('Halo, saya Ibu Uli Ulya, guru kelas tiga. Selamat berpetualang rantai makanan!')">
+                    🔊 Dengar Sapaan Ibu Uli Ulya
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. DATA SISWA + SELFIE -->
+        <section id="dataSiswa" class="section">
+            <h2>📸 Data Siswa & Avatar Hewan</h2>
+            <div class="form-siswa">
+                <div class="form-group">
+                    <label>Nama Lengkap Siswa:</label>
+                    <input type="text" id="inputNama" placeholder="Contoh: Ahmad Zaki Pratama">
+                </div>
+                <div class="form-group">
+                    <label>Nomor Absen:</label>
+                    <input type="number" id="inputAbsen" placeholder="Contoh: 12">
+                </div>
+                <div class="form-group">
+                    <label>Pilih Avatar Hewan Kesukaanmu:</label>
+                    <div class="avatar-choices" id="avatarChoices">
+                        <div class="avatar-opt selected" data-icon="🦊" data-name="Rubah" onclick="selectAvatar(this)"><span>🦊</span>Rubah</div>
+                        <div class="avatar-opt" data-icon="🐭" data-name="Tikus" onclick="selectAvatar(this)"><span>🐭</span>Tikus</div>
+                        <div class="avatar-opt" data-icon="🐍" data-name="Ular" onclick="selectAvatar(this)"><span>🐍</span>Ular</div>
+                        <div class="avatar-opt" data-icon="🦅" data-name="Elang" onclick="selectAvatar(this)"><span>🦅</span>Elang</div>
+                        <div class="avatar-opt" data-icon="🐸" data-name="Katak" onclick="selectAvatar(this)"><span>🐸</span>Katak</div>
+                        <div class="avatar-opt" data-icon="🐝" data-name="Lebah" onclick="selectAvatar(this)"><span>🐝</span>Lebah</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Foto Selfie Siswa (Untuk Sertifikat):</label>
+                    <div class="camera-box">
+                        <div style="margin-bottom:10px;">
+                            <button type="button" class="btn-main btn-blue" onclick="startCamera()">📷 Buka Kamera</button>
+                            <button type="button" class="btn-main btn-orange" onclick="takeSelfie()">📸 Jepret Selfie</button>
+                        </div>
+                        <div class="camera-preview-wrap">
+                            <video id="webcam" autoplay playsinline></video>
+                            <canvas id="selfieCanvas" width="200" height="200"></canvas>
+                        </div>
+                        <small style="font-weight:700; color:#636e72;">Jika kamera tidak tersedia, avatar hewanmu akan tampil di sertifikat.</small>
+                    </div>
+                </div>
+                <button class="btn-main" style="width:100%;" onclick="simpanDataSiswa()">💾 Simpan Data & Mulai Petualangan!</button>
+            </div>
+        </section>
+
+        <!-- 3. TUJUAN & KKTP -->
+        <section id="tujuan" class="section">
+            <h2>🎯 Tujuan Pembelajaran & KKTP</h2>
+            <div class="tp-list">
+                <div class="tp-item" onclick="speakText('Tujuan Pembelajaran 1: Mengenal Produsen, Konsumen, dan Pengurai.')">
+                    🌱 <strong>TP 1:</strong> Mengenal Produsen, Konsumen, dan Pengurai dalam ekosistem.
+                </div>
+                <div class="tp-item" onclick="speakText('Tujuan Pembelajaran 2: Menyusun rantai makanan dengan benar.')">
+                    🔗 <strong>TP 2:</strong> Menyusun urutan rantai makanan dengan benar.
+                </div>
+                <div class="tp-item" onclick="speakText('Tujuan Pembelajaran 3: Menganalisis hubungan makan dan dimakan.')">
+                    🍽️ <strong>TP 3:</strong> Menganalisis hubungan makan-dimakan antar makhluk hidup.
+                </div>
+                <div class="tp-item" onclick="speakText('Tujuan Pembelajaran 4: Menemukan rantai makanan di sawah, kebun, dan laut.')">
+                    🌾 <strong>TP 4:</strong> Menemukan contoh rantai makanan di sawah, kebun, dan laut.
+                </div>
+                <div class="tp-item" onclick="speakText('Tujuan Pembelajaran 5: Memahami jaring-jaring makanan.')">
+                    🕸️ <strong>TP 5:</strong> Memahami jaring-jaring makanan sebagai gabungan rantai makanan.
+                </div>
+            </div>
+
+            <h3 style="font-family:'Fredoka',cursive; margin-bottom:12px;">📊 Kriteria Ketercapaian Tujuan Pembelajaran (KKTP)</h3>
+            <div class="kktp-grid">
+                <div class="kktp-card" style="background:#ff7675;">
+                    <div style="font-size:1.5rem;">🌱</div>
+                    <div>Belum Memenuhi</div>
+                    <div style="font-size:1.2rem; margin-top:4px;">Nilai &lt; 50</div>
+                </div>
+                <div class="kktp-card" style="background:#fdcb6e; color:#2d3436;">
+                    <div style="font-size:1.5rem;">🌿</div>
+                    <div>Cukup</div>
+                    <div style="font-size:1.2rem; margin-top:4px;">Nilai 50 – 69</div>
+                </div>
+                <div class="kktp-card" style="background:#0984e3;">
+                    <div style="font-size:1.5rem;">🌳</div>
+                    <div>Baik</div>
+                    <div style="font-size:1.2rem; margin-top:4px;">Nilai 70 – 89</div>
+                </div>
+                <div class="kktp-card" style="background:#00b894;">
+                    <div style="font-size:1.5rem;">👑</div>
+                    <div>Sangat Baik</div>
+                    <div style="font-size:1.2rem; margin-top:4px;">Nilai 90 – 100</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MATERI SERU -->
+        <section id="materi" class="section">
+            <h2>📚 Materi Seru: Rantai Makanan</h2>
+            <p style="font-weight:700; margin-bottom:10px;">Klik setiap kartu berwarna untuk mendengarkan penjelasan Ibu Guru! 🔊</p>
+            <div class="card-grid">
+                <div class="materi-card card-produsen" onclick="speakText('Produsen. Makhluk hidup yang membuat makanan sendiri dari bantuan sinar matahari. Contohnya: Padi, rumput, dan daun.')">
+                    <h3>🌱 1. Produsen</h3>
+                    <p>Membuat makanan sendiri dari cahaya matahari.<br><strong>Contoh:</strong> Padi, rumput, daun.</p>
+                </div>
+                <div class="materi-card card-kon1" onclick="speakText('Konsumen tingkat 1. Hewan pemakan tumbuhan atau produsen. Contohnya: Tikus, ulat, dan belalang.')">
+                    <h3>🐭 2. Konsumen 1</h3>
+                    <p>Memakan produsen (tumbuhan).<br><strong>Contoh:</strong> Tikus, ulat, belalang.</p>
+                </div>
+                <div class="materi-card card-kon2" onclick="speakText('Konsumen tingkat 2. Hewan pemakan konsumen 1. Contohnya: Ular, burung, dan katak.')">
+                    <h3>🐍 3. Konsumen 2</h3>
+                    <p>Memakan konsumen 1.<br><strong>Contoh:</strong> Ular, burung, katak.</p>
+                </div>
+                <div class="materi-card card-kon3" onclick="speakText('Konsumen tingkat 3. Pemangsa puncak di ekosistem. Contohnya: Elang, hiu, dan harimau.')">
+                    <h3>🦅 4. Konsumen 3</h3>
+                    <p>Pemangsa puncak.<br><strong>Contoh:</strong> Elang, hiu, harimau.</p>
+                </div>
+                <div class="materi-card card-pengurai" onclick="speakText('Pengurai atau dekomposer. Menguraikan sisa makhluk hidup yang mati menjadi tanah subur. Contohnya jamur dan bakteri.')">
+                    <h3>🍄 5. Pengurai</h3>
+                    <p>Menguraikan sisa makhluk mati menjadi tanah subur.<br><strong>Contoh:</strong> Jamur, bakteri.</p>
+                </div>
+                <div class="materi-card card-rantai" onclick="speakText('Rantai Makanan adalah urutan peristiwa makan dan dimakan antarmakhluk hidup dengan urutan tertentu.')">
+                    <h3>🔗 6. Rantai Makanan</h3>
+                    <p>Urutan proses makan dan dimakan antarmakhluk hidup secara lurus.</p>
+                </div>
+            </div>
+
+            <div class="contoh-ekosistem">
+                <h3 style="font-family:'Fredoka',cursive; color:#00b894;">🌍 Contoh Rantai Makanan di Berbagai Ekosistem (Klik untuk Suara):</h3>
+                <div class="chain-pill" onclick="speakText('Rantai makanan di sawah: Padi dimakan Tikus, Tikus dimakan Ular, Ular dimakan Elang, lalu diuraikan oleh Pengurai.')">
+                    🌾 <strong>Sawah:</strong> Padi ➔ Tikus ➔ Ular ➔ Elang ➔ Pengurai 🍄
+                </div>
+                <div class="chain-pill" onclick="speakText('Rantai makanan di kebun: Daun dimakan Ulat, Ulat dimakan Burung, Burung dimakan Kucing, lalu diuraikan oleh Pengurai.')">
+                    🌳 <strong>Kebun:</strong> Daun ➔ Ulat ➔ Burung ➔ Kucing ➔ Pengurai 🍄
+                </div>
+                <div class="chain-pill" onclick="speakText('Rantai makanan di laut: Fitoplankton dimakan Ikan Kecil, Ikan Kecil dimakan Ikan Besar, Ikan Besar dimakan Hiu, lalu diuraikan oleh Pengurai.')">
+                    🌊 <strong>Laut:</strong> Fitoplankton ➔ Ikan Kecil ➔ Ikan Besar ➔ Hiu ➔ Pengurai 🦠
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. JARING MAKANAN -->
+        <section id="jaring" class="section">
+            <h2>🕸️ Jaring-Jaring Makanan (Baru!)</h2>
+            <div class="jaring-box">
+                <p style="font-size:1.1rem; font-weight:800; color:#6c5ce7; margin-bottom:12px;">
+                    Jaring-jaring makanan adalah gabungan dari banyak rantai makanan yang saling berhubungan dalam satu ekosistem!
+                </p>
+
+                <div class="compare-grid">
+                    <div class="compare-card" style="background:#dff9fb; border:2px solid #00cec9;">
+                        <h4 style="color:#0984e3; font-size:1.15rem;">➡️ Rantai Makanan</h4>
+                        <p style="margin-top:5px;">Hanya <strong>1 jalur lurus</strong> makan dan dimakan.</p>
+                    </div>
+                    <div class="compare-card" style="background:#f3e5f5; border:2px solid #9b59b6;">
+                        <h4 style="color:#8e44ad; font-size:1.15rem;">🕸️ Jaring-Jaring Makanan</h4>
+                        <p style="margin-top:5px;">Memiliki <strong>banyak jalur</strong> bercabang, sehingga ekosistem <strong>lebih kuat</strong> dan seimbang!</p>
+                    </div>
+                </div>
+
+                <h3 style="font-family:'Fredoka',cursive; margin:15px 0 8px 0;">🌾 Contoh Jaring-Jaring Makanan di Sawah:</h3>
+                <div class="chain-pill" onclick="speakText('Jalur 1: Padi dimakan Tikus, Tikus dimakan Ular, Ular dimakan Elang.')">
+                    1️⃣ Padi ➔ Tikus ➔ Ular ➔ Elang
+                </div>
+                <div class="chain-pill" onclick="speakText('Jalur 2: Padi dimakan Burung, Burung dimakan Ular.')">
+                    2️⃣ Padi ➔ Burung ➔ Ular
+                </div>
+                <div class="chain-pill" onclick="speakText('Jalur 3: Padi dimakan Belalang, Belalang dimakan Katak, Katak dimakan Ular.')">
+                    3️⃣ Padi ➔ Belalang ➔ Katak ➔ Ular
+                </div>
+                <div class="chain-pill" onclick="speakText('Jalur 4: Tikus juga bisa dimakan oleh Burung Hantu.')">
+                    4️⃣ Tikus ➔ Burung Hantu 🦉
+                </div>
+
+                <div style="margin-top:15px; text-align:center;">
+                    <button class="btn-main btn-purple" onclick="speakText('Jaring-jaring makanan adalah gabungan banyak rantai makanan. Rantai makanan hanya satu jalur lurus, sedangkan jaring makanan punya banyak jalur sehingga ekosistem lebih kuat!')">
+                        🔊 Dengarkan Penjelasan Jaring Makanan
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. VIDEO ANIMASI AI -->
+        <section id="videoAI" class="section">
+            <h2>🎬 Video Animasi AI: Perjalanan Energi</h2>
+            <div class="canvas-stage">
+                <canvas id="aiAnimCanvas" class="edu-canvas" width="640" height="340"></canvas>
+                <div style="display:flex; justify-content:center; gap:12px;">
+                    <button class="btn-main" onclick="playAIAnim()">▶️ Play Animasi</button>
+                    <button class="btn-main btn-orange" onclick="pauseAIAnim()">⏸️ Pause</button>
+                </div>
+                <p style="margin-top:10px; font-weight:700; color:#ffeaa7;">Animasi otomatis berganti setiap 1,2 detik dari Produsen hingga Pengurai!</p>
+            </div>
+        </section>
+
+        <!-- 7. GAME 1000 SOAL -->
+        <section id="game" class="section">
+            <h2>🎮 Game Interaktif (1000 Variasi Soal)</h2>
+            <div class="game-tabs">
+                <button class="btn-main" onclick="setGameMode('peran')">1. 🎭 Tebak Peran</button>
+                <button class="btn-main btn-blue" onclick="setGameMode('urut')">2. 🔗 Urutkan Rantai</button>
+                <button class="btn-main btn-orange" onclick="setGameMode('makan')">3. 🍽️ Siapa Makan Siapa</button>
+                <button class="btn-main btn-purple" onclick="setGameMode('cepat')">4. ⚡ Cepat Tepat</button>
+            </div>
+
+            <div class="game-box">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+                    <span id="gameModeBadge" style="background:#fdcb6e; padding:5px 14px; border-radius:12px; font-weight:900;">Mode: Tebak Peran</span>
+                    <span id="gameScoreBadge" style="background:#00b894; color:#fff; padding:5px 14px; border-radius:12px; font-weight:900;">Benar: 0</span>
+                </div>
+                <h3 id="gameQuestion" style="font-size:1.3rem; margin-bottom:15px; color:#2d3436;">Memuat soal...</h3>
+                <div id="gameOptions"></div>
+                <div id="gameFeedback" style="margin-top:15px; font-weight:900; font-size:1.1rem;"></div>
+            </div>
+        </section>
+
+        <!-- 8. SIMULASI EKOSISTEM -->
+        <section id="simulasi" class="section">
+            <h2>🌍 Simulasi Keseimbangan Ekosistem</h2>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;">
+                <button class="btn-main" onclick="setSimEnv('sawah')">🌾 Sawah</button>
+                <button class="btn-main btn-blue" onclick="setSimEnv('kebun')">🌳 Kebun</button>
+                <button class="btn-main btn-purple" onclick="setSimEnv('laut')">🌊 Laut</button>
+                <button class="btn-main btn-orange" onclick="setSimEnv('hutan')">🌲 Hutan</button>
+            </div>
+
+            <div class="canvas-stage">
+                <canvas id="simCanvas" class="edu-canvas" width="640" height="300"></canvas>
+                <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+                    <button class="btn-main btn-pink" onclick="hapusSatuRantai()">❌ Hapus Satu Rantai</button>
+                    <button class="btn-main" onclick="resetSimulasi()">🔄 Pulihkan Ekosistem</button>
+                </div>
+                <div id="simAlertBox" style="margin-top:15px; background:#fff; color:#2d3436; padding:14px; border-radius:15px; font-weight:800;">
+                    Ekosistem dalam keadaan SEIMBANG! Klik "Hapus Satu Rantai" untuk melihat dampaknya.
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. KUIS ACAK -->
+        <section id="kuis" class="section">
+            <h2>📝 Kuis Evaluasi Acak (10 Soal)</h2>
+            <div class="quiz-box">
+                <button class="btn-main btn-blue" onclick="mulaiKuis()">🎲 Mulai Kuis Acak Baru</button>
+                <div id="quizContainer" style="margin-top:18px;"></div>
+                <div id="quizSubmitWrap" style="display:none; margin-top:15px;">
+                    <button class="btn-main" style="width:100%;" onclick="kumpulkanKuis()">✅ Kumpulkan Jawaban Kuis</button>
+                </div>
+                <div id="quizResultBox" style="margin-top:20px; display:none; padding:20px; border-radius:18px; background:#fef9e7; border:3px solid #f1c40f; text-align:center;"></div>
+            </div>
+        </section>
+
+        <!-- 10. REKAP & SERTIFIKAT -->
+        <section id="sertifikat" class="section">
+            <h2>🏆 Rekap Hasil & Sertifikat Belajar</h2>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;">
+                <button class="btn-main btn-blue" onclick="updateRekapSertifikat(true)">📊 Lihat Rekap + Dengar Suara</button>
+                <button class="btn-main btn-orange" onclick="window.print()">🖨️ Unduh / Cetak Sertifikat</button>
+            </div>
+
+            <div id="rekapSummary" style="background:#fff; padding:18px; border-radius:18px; border:3px solid #00b894; margin-bottom:20px; font-weight:800;">
+                Klik tombol "Lihat Rekap + Dengar Suara" untuk memperbarui data nilai terbaru.
+            </div>
+
+            <!-- SERTIFIKAT -->
+            <div id="sertifikatArea" class="sertifikat-wrapper">
+                <img class="sertifikat-watermark" src="https://i.ibb.co.com/d4xBMPt8/png-clipart-logo-kementerian-pendidikan-dan-kebudayaan-indonesia-others-logo-location.png" alt="Logo Dikbud">
+                <div class="sertifikat-content">
+                    <div class="kop-surat">
+                        <h4>PEMERINTAH KABUPATEN TEBO</h4>
+                        <h4>DINAS PENDIDIKAN DAN KEBUDAYAAN</h4>
+                        <h3>SD NEGERI 018/VIII MUARA TEBO</h3>
+                        <p style="font-size:0.85rem; font-weight:700;">Alamat: Muara Tebo, Kabupaten Tebo, Provinsi Jambi</p>
+                    </div>
+
+                    <div class="cert-title">SERTIFIKAT PEMBELAJARAN</div>
+                    <p style="font-weight:800; font-size:0.95rem;">Nomor: 421.2 / 018 / SDN.018 / 2026</p>
+
+                    <p style="margin-top:12px; font-weight:700;">Diberikan kepada:</p>
+                    <h2 id="certNama" style="border:none; margin:4px 0; color:#0984e3; font-size:1.9rem;">Nama Siswa</h2>
+                    <p style="font-weight:800;">Nomor Absen: <span id="certAbsen">-</span> | Avatar: <span id="certAvatar">🦊 Rubah</span></p>
+
+                    <div class="cert-photo-box" id="certPhotoBox">🦊</div>
+
+                    <p style="font-weight:800; font-size:1.05rem; margin:8px 0;">
+                        Telah menyelesaikan IPAS Rantai &amp; Jaring Makanan Kelas 3
+                    </p>
+                    <p style="font-weight:900; font-size:1.15rem; color:#00b894;">
+                        Nilai Kuis: <span id="certNilai">0</span> • Predikat: <span id="certPredikat">Belum Memenuhi</span>
+                    </p>
+
+                    <div class="cert-signatures">
+                        <div>
+                            <p>Mengetahui,</p>
+                            <p>Orang Tua / Wali Murid</p>
+                            <br><br><br>
+                            <p>( ........................................ )</p>
+                        </div>
+                        <div>
+                            <p>Muara Tebo, 2026</p>
+                            <p>Guru Kelas 3</p>
+                            <br><br><br>
+                            <p style="text-decoration:underline;">Uli Ulya, S.Pd</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script>
+    // ================= STATE GLOBAL =================
+    const state = {
+        nama: "Petualang Cilik",
+        absen: "-",
+        avatarIcon: "🦊",
+        avatarName: "Rubah",
+        selfieDataUrl: null,
+        stars: 0,
+        gameBenar: 0,
+        nilaiKuis: 0,
+        predikat: "Belum Memenuhi",
+        musikAktif: false,
+        musikInterval: null
+    };
+
+    // ================= WEB AUDIO API (KLIK & MUSIK DO-RE-MI) =================
+    let audioCtx = null;
+    function getAudioCtx() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        return audioCtx;
+    }
+
+    function playClickSound() {
+        try {
+            const ctx = getAudioCtx();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(520, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(780, ctx.currentTime + 0.08);
+            gain.gain.setValueAtTime(0.15, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.08);
+        } catch (e) {}
+    }
+
+    function playNote(freq, duration = 0.25) {
+        try {
+            const ctx = getAudioCtx();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, ctx.currentTime);
+            gain.gain.setValueAtTime(0.12, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + duration);
+        } catch (e) {}
+    }
+
+    function toggleMusik() {
+        playClickSound();
+        const btn = document.getElementById('btnMusik');
+        if (state.musikAktif) {
+            clearInterval(state.musikInterval);
+            state.musikAktif = false;
+            btn.textContent = "🎵 Musik Ceria";
+            btn.style.background = "#ffeaa7";
+        } else {
+            state.musikAktif = true;
+            btn.textContent = "🔇 Matikan Musik";
+            btn.style.background = "#55efc4";
+            // Nada Do-Re-Mi-Fa-Sol-La-Si-Do ceria
+            const melody = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 392.00, 329.63, 261.63];
+            let idx = 0;
+            playNote(melody[idx++]);
+            state.musikInterval = setInterval(() => {
+                playNote(melody[idx % melody.length]);
+                idx++;
+            }, 350);
+        }
+    }
+
+    // ================= SPEECH SYNTHESIS BAHASA INDONESIA =================
+    function speakText(text) {
+        if (!('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'id-ID';
+        utter.rate = 0.98;
+        utter.pitch = 1.1;
+        window.speechSynthesis.speak(utter);
+    }
+
+    // ================= CONFETTI (BINTANG, BUNGA, KUPU-KUPU) =================
+    function launchConfetti() {
+        const container = document.getElementById('confetti-container');
+        const symbols = ['⭐', '🌸', '🦋', '🌟', '🌺', '✨'];
+        for (let i = 0; i < 32; i++) {
+            const el = document.createElement('div');
+            el.className = 'confetti-item';
+            el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            el.style.fontSize = (Math.random() * 14 + 18) + 'px';
+            container.appendChild(el);
+            setTimeout(() => el.remove(), 4200);
+        }
+    }
+
+    // ================= TEMA & NAVIGASI =================
+    function setTheme(themeClass) {
+        playClickSound();
+        document.body.className = themeClass;
+    }
+
+    const menuVoices = {
+        profil: "Menu Profil Ibu Uli Ulya",
+        dataSiswa: "Menu Data Siswa dan Selfie. Silakan isi nama, absen, dan pilih avatar hewanmu.",
+        tujuan: "Menu Tujuan Pembelajaran dan Kriteria Ketercapaian Tujuan Pembelajaran.",
+        materi: "Menu Materi Seru Rantai Makanan. Klik kartu berwarna untuk mendengarkan penjelasannya.",
+        jaring: "Menu Jaring-Jaring Makanan. Gabungan dari banyak rantai makanan.",
+        videoAI: "Menu Video Animasi AI Perjalanan Energi Rantai Makanan.",
+        game: "Menu Game Seribu Soal. Ayo kumpulkan bintang!",
+        simulasi: "Menu Simulasi Ekosistem. Lihat apa yang terjadi jika satu rantai hilang.",
+        kuis: "Menu Kuis Acak. Jawab sepuluh soal dengan teliti ya!",
+        sertifikat: "Menu Rekap Hasil dan Sertifikat Pembelajaran."
+    };
+
+    function openSection(sectionId, btnEl) {
+        playClickSound();
+        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+
+        document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+        if (btnEl) btnEl.classList.add('active');
+
+        if (menuVoices[sectionId]) {
+            speakText(menuVoices[sectionId]);
+        }
+
+        if (sectionId === 'sertifikat') {
+            updateRekapSertifikat(false);
+        }
+    }
+
+    // ================= LEVEL & PROGRESS BAR =================
+    function addStars(amount) {
+        state.stars += amount;
+        updateProgressUI();
+    }
+
+    function updateProgressUI() {
+        document.getElementById('navStarsText').textContent = `⭐ ${state.stars} Bintang`;
+        let levelText = "Level 1: Bibit 🌱";
+        if (state.stars >= 150) levelText = "Level 4: Raja Hutan 👑";
+        else if (state.stars >= 90) levelText = "Level 3: Penjaga Hutan 🌳";
+        else if (state.stars >= 40) levelText = "Level 2: Petualang 🌿";
+
+        document.getElementById('navLevelTitle').textContent = levelText;
+        const pct = Math.min(100, Math.max(10, (state.stars / 150) * 100));
+        document.getElementById('navProgressBar').style.width = pct + "%";
+    }
+
+    // ================= DATA SISWA + AVATAR + CAMERA SELFIE =================
+    let cameraStream = null;
+
+    function selectAvatar(el) {
+        playClickSound();
+        document.querySelectorAll('.avatar-opt').forEach(opt => opt.classList.remove('selected'));
+        el.classList.add('selected');
+        state.avatarIcon = el.getAttribute('data-icon');
+        state.avatarName = el.getAttribute('data-name');
+    }
+
+    async function startCamera() {
+        playClickSound();
+        try {
+            cameraStream = await navigator.mediaDevices.getUserMedia({ video: true });
+            document.getElementById('webcam').srcObject = cameraStream;
+            speakText("Kamera siap, silakan tersenyum dan tekan tombol jepret selfie!");
+        } catch (err) {
+            alert("Kamera tidak dapat diakses di perangkat ini. Jangan khawatir, avatar hewanmu tetap akan tampil di sertifikat!");
+        }
+    }
+
+    function takeSelfie() {
+        playClickSound();
+        const video = document.getElementById('webcam');
+        const canvas = document.getElementById('selfieCanvas');
+        const ctx = canvas.getContext('2d');
+        if (video.srcObject) {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            state.selfieDataUrl = canvas.toDataURL('image/png');
+            launchConfetti();
+            speakText("Cekrek! Foto selfie berhasil diambil!");
+        } else {
+            alert("Silakan klik Buka Kamera terlebih dahulu ya!");
+        }
+    }
+
+    function simpanDataSiswa() {
+        playClickSound();
+        const namaInput = document.getElementById('inputNama').value.trim();
+        const absenInput = document.getElementById('inputAbsen').value.trim();
+
+        if (!namaInput || !absenInput) {
+            alert("Ayo isi Nama Lengkap dan Nomor Absen dulu ya!");
+            speakText("Ayo isi nama lengkap dan nomor absen dulu ya!");
+            return;
+        }
+
+        state.nama = namaInput;
+        state.absen = absenInput;
+
+        document.getElementById('navStudentName').textContent = state.nama;
+        document.getElementById('navAvatarIcon').textContent = state.avatarIcon;
+
+        addStars(10);
+        launchConfetti();
+        updateRekapSertifikat(false);
+
+        const welcomeMsg = `Selamat datang ${state.nama}, nomor absen ${state.absen}, kamu pilih avatar ${state.avatarName}. Semangat belajar bersama Ibu Uli Ulya!`;
+        speakText(welcomeMsg);
+    }
+
+    // ================= VIDEO ANIMASI AI (CANVAS 1.2 DETIK) =================
+    const aiFrames = [
+        { title: "1. MATAHARI & PRODUSEN", icon: "☀️ ➔ 🌱🌾", desc: "Tumbuhan (Padi) membuat makanan dengan cahaya matahari.", bg: "#d4efdf", color: "#1e8449" },
+        { title: "2. KONSUMEN TINGKAT 1", icon: "🌾 ➔ 🐭", desc: "Tikus (Herbivora) memakan padi untuk mendapat energi.", bg: "#fdebd0", color: "#d35400" },
+        { title: "3. KONSUMEN TINGKAT 2", icon: "🐭 ➔ 🐍", desc: "Ular (Karnivora) memangsa tikus di sawah.", bg: "#fadbd8", color: "#c0392b" },
+        { title: "4. KONSUMEN TINGKAT 3", icon: "🐍 ➔ 🦅", desc: "Elang sebagai pemangsa puncak memakan ular.", bg: "#ebdef0", color: "#6c3483" },
+        { title: "5. PENGURAI (DEKOMPOSER)", icon: "🦅 ➔ 🍄🌱", desc: "Elang mati diuraikan jamur & bakteri menyuburkan tanah bagi padi.", bg: "#d6eaf8", color: "#1b4f72" }
+    ];
+
+    let aiFrameIdx = 0;
+    let aiTimer = null;
+
+    function drawAIFrame() {
+        const canvas = document.getElementById('aiAnimCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const f = aiFrames[aiFrameIdx];
+
+        ctx.fillStyle = f.bg;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Border dalam
+        ctx.strokeStyle = f.color;
+        ctx.lineWidth = 8;
+        ctx.strokeRect(12, 12, canvas.width - 24, canvas.height - 24);
+
+        // Judul
+        ctx.fillStyle = f.color;
+        ctx.font = "bold 26px Fredoka, sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(f.title, canvas.width / 2, 65);
+
+        // Ikon besar
+        ctx.font = "72px Arial";
+        ctx.fillText(f.icon, canvas.width / 2, 175);
+
+        // Deskripsi
+        ctx.fillStyle = "#2d3436";
+        ctx.font = "bold 19px Nunito, sans-serif";
+        ctx.fillText(f.desc, canvas.width / 2, 245);
+
+        // Indikator step
+        ctx.fillStyle = f.color;
+        ctx.font = "bold 15px Nunito, sans-serif";
+        ctx.fillText(`Adegan ${aiFrameIdx + 1} dari ${aiFrames.length}`, canvas.width / 2, 295);
+    }
+
+    function playAIAnim() {
+        playClickSound();
+        if (aiTimer) clearInterval(aiTimer);
+        drawAIFrame();
+        speakText("Memutar video animasi rantai makanan.");
+        aiTimer = setInterval(() => {
+            aiFrameIdx = (aiFrameIdx + 1) % aiFrames.length;
+            drawAIFrame();
+        }, 1200);
+    }
+
+    function pauseAIAnim() {
+        playClickSound();
+        if (aiTimer) {
+            clearInterval(aiTimer);
+            aiTimer = null;
+        }
+    }
+
+    // ================= BANK 1000 VARIASI SOAL DINAMIS =================
+    const bankOrganisme = [
+        { nama: "Padi 🌾", peran: "Produsen", makanan: "Cahaya Matahari", dimakanOleh: "Tikus", eko: "Sawah" },
+        { nama: "Rumput 🌱", peran: "Produsen", makanan: "Cahaya Matahari", dimakanOleh: "Belalang", eko: "Padang Rumput" },
+        { nama: "Daun Hijau 🍃", peran: "Produsen", makanan: "Cahaya Matahari", dimakanOleh: "Ulat", eko: "Kebun" },
+        { nama: "Fitoplankton 🦠", peran: "Produsen", makanan: "Cahaya Matahari", dimakanOleh: "Ikan Kecil", eko: "Laut" },
+        { nama: "Tikus 🐭", peran: "Konsumen 1", makanan: "Padi", dimakanOleh: "Ular", eko: "Sawah" },
+        { nama: "Belalang 🦗", peran: "Konsumen 1", makanan: "Rumput", dimakanOleh: "Katak", eko: "Sawah" },
+        { nama: "Ulat 🐛", peran: "Konsumen 1", makanan: "Daun Hijau", dimakanOleh: "Burung Pipit", eko: "Kebun" },
+        { nama: "Kelinci 🐇", peran: "Konsumen 1", makanan: "Wortel & Rumput", dimakanOleh: "Rubah", eko: "Hutan" },
+        { nama: "Ikan Kecil 🐟", peran: "Konsumen 1", makanan: "Fitoplankton", dimakanOleh: "Ikan Besar", eko: "Laut" },
+        { nama: "Katak 🐸", peran: "Konsumen 2", makanan: "Belalang", dimakanOleh: "Ular", eko: "Sawah" },
+        { nama: "Ular 🐍", peran: "Konsumen 2", makanan: "Tikus", dimakanOleh: "Elang", eko: "Sawah" },
+        { nama: "Burung Pipit 🐦", peran: "Konsumen 2", makanan: "Ulat", dimakanOleh: "Kucing", eko: "Kebun" },
+        { nama: "Ikan Besar  Tuna 🐠", peran: "Konsumen 2", makanan: "Ikan Kecil", dimakanOleh: "Hiu", eko: "Laut" },
+        { nama: "Elang 🦅", peran: "Konsumen 3", makanan: "Ular", dimakanOleh: "Pengurai", eko: "Sawah" },
+        { nama: "Hiu 🦈", peran: "Konsumen 3", makanan: "Ikan Besar", dimakanOleh: "Pengurai", eko: "Laut" },
+        { nama: "Harimau 🐯", peran: "Konsumen 3", makanan: "Rusa", dimakanOleh: "Pengurai", eko: "Hutan" },
+        { nama: "Jamur 🍄", peran: "Pengurai", makanan: "Sisa Makhluk Mati", dimakanOleh: "Menyuburkan Tanah", eko: "Semua Ekosistem" },
+        { nama: "Bakteri Tanah 🧫", peran: "Pengurai", makanan: "Sisa Makhluk Mati", dimakanOleh: "Menyuburkan Tanah", eko: "Semua Ekosistem" }
+    ];
+
+    const bankRantai = [
+        { eko: "Sawah", benar: "Padi ➔ Tikus ➔ Ular ➔ Elang ➔ Pengurai", salah: ["Tikus ➔ Padi ➔ Elang ➔ Ular", "Elang ➔ Ular ➔ Tikus ➔ Padi", "Padi ➔ Elang ➔ Tikus ➔ Ular"] },
+        { eko: "Kebun", benar: "Daun ➔ Ulat ➔ Burung ➔ Kucing ➔ Pengurai", salah: ["Ulat ➔ Daun ➔ Kucing ➔ Burung", "Burung ➔ Ulat ➔ Daun ➔ Kucing", "Daun ➔ Kucing ➔ Ulat ➔ Burung"] },
+        { eko: "Laut", benar: "Fitoplankton ➔ Ikan Kecil ➔ Ikan Besar ➔ Hiu", salah: ["Hiu ➔ Ikan Besar ➔ Ikan Kecil ➔ Fitoplankton", "Ikan Kecil ➔ Fitoplankton ➔ Hiu ➔ Ikan Besar", "Fitoplankton ➔ Hiu ➔ Ikan Kecil ➔ Ikan Besar"] },
+        { eko: "Sawah (Jalur Serangga)", benar: "Padi ➔ Belalang ➔ Katak ➔ Ular ➔ Elang", salah: ["Belalang ➔ Padi ➔ Katak ➔ Ular", "Katak ➔ Belalang ➔ Ular ➔ Padi", "Padi ➔ Ular ➔ Katak ➔ Belalang"] },
+        { eko: "Hutan", benar: "Rumput ➔ Kelinci ➔ Rubah ➔ Harimau", salah: ["Kelinci ➔ Rumput ➔ Harimau ➔ Rubah", "Harimau ➔ Rubah ➔ Kelinci ➔ Rumput", "Rumput ➔ Harimau ➔ Kelinci ➔ Rubah"] }
+    ];
+
+    const bankJaring = [
+        {
+            q: "Apa perbedaan utama antara Rantai Makanan dan Jaring-Jaring Makanan?",
+            a: "Rantai makanan hanya 1 jalur lurus, sedangkan jaring makanan memiliki banyak jalur bercabang",
+            opts: [
+                "Rantai makanan hanya 1 jalur lurus, sedangkan jaring makanan memiliki banyak jalur bercabang",
+                "Rantai makanan hanya ada di laut, jaring makanan hanya di darat",
+                "Jaring makanan tidak memiliki produsen",
+                "Rantai makanan lebih kuat daripada jaring makanan"
+            ]
+        },
+        {
+            q: "Dalam jaring-jaring makanan sawah, Padi bisa dimakan oleh beberapa hewan sekaligus, yaitu...",
+            a: "Tikus, Burung, dan Belalang",
+            opts: ["Tikus, Burung, dan Belalang", "Elang, Ular, dan Hiu", "Katak, Ular, dan Harimau", "Jamur, Bakteri, dan Elang"]
+        },
+        {
+            q: "Mengapa ekosistem dengan jaring-jaring makanan lebih kuat dan seimbang?",
+            a: "Karena hewan memiliki alternatif sumber makanan lain jika satu mangsa berkurang",
+            opts: [
+                "Karena hewan memiliki alternatif sumber makanan lain jika satu mangsa berkurang",
+                "Karena tidak ada hewan pemangsa di dalamnya",
+                "Karena semua hewan hanya makan tumbuhan",
+                "Karena tumbuhan tidak butuh matahari"
+            ]
+        },
+        {
+            q: "Pada jaring makanan sawah, selain dimakan Ular, Tikus juga dimakan oleh...",
+            a: "Burung Hantu 🦉",
+            opts: ["Burung Hantu 🦉", "Belalang 🦗", "Padi 🌾", "Ulat 🐛"]
+        }
+    ];
+
+    function shuffle(arr) {
+        return [...arr].sort(() => Math.random() - 0.5);
+    }
+
+    function generateQuestion(mode) {
+        const org = bankOrganisme[Math.floor(Math.random() * bankOrganisme.length)];
+        const actualMode = mode === 'cepat' ? ['peran', 'urut', 'makan', 'jaring'][Math.floor(Math.random() * 4)] : mode;
+
+        if (actualMode === 'peran') {
+            const roles = ["Produsen", "Konsumen 1", "Konsumen 2", "Konsumen 3", "Pengurai"];
+            const wrongRoles = shuffle(roles.filter(r => r !== org.peran)).slice(0, 3);
+            return {
+                q: `Dalam ekosistem ${org.eko}, apakah peran dari ${org.nama}?`,
+                a: org.peran,
+                options: shuffle([org.peran, ...wrongRoles])
+            };
+        } else if (actualMode === 'urut') {
+            const r = bankRantai[Math.floor(Math.random() * bankRantai.length)];
+            return {
+                q: `Manakah urutan rantai makanan di ekosistem ${r.eko} yang paling tepat?`,
+                a: r.benar,
+                options: shuffle([r.benar, ...r.salah])
+            };
+        } else if (actualMode === 'makan') {
+            const validPrey = bankOrganisme.filter(o => o.dimakanOleh !== "Menyuburkan Tanah");
+            const item = validPrey[Math.floor(Math.random() * validPrey.length)];
+            const wrongPredators = shuffle(["Tikus", "Ular", "Elang", "Katak", "Burung Pipit", "Hiu", "Rubah", "Belalang"].filter(p => p !== item.dimakanOleh)).slice(0, 3);
+            return {
+                q: `Siapakah yang memakan ${item.nama} pada rantai makanan?`,
+                a: item.dimakanOleh,
+                options: shuffle([item.dimakanOleh, ...wrongPredators])
+            };
+        } else {
+            const j = bankJaring[Math.floor(Math.random() * bankJaring.length)];
+            return {
+                q: j.q,
+                a: j.a,
+                options: shuffle(j.opts)
+            };
+        }
+    }
+
+    // ================= GAME ENGINE =================
+    let currentGameMode = 'peran';
+    let currentGameQ = null;
+
+    function setGameMode(mode) {
+        playClickSound();
+        currentGameMode = mode;
+        const labels = {
+            peran: "Mode: Tebak Peran",
+            urut: "Mode: Urutkan Rantai",
+            makan: "Mode: Siapa Makan Siapa",
+            cepat: "Mode: Cepat Tepat (Campuran 1000 Soal)"
+        };
+        document.getElementById('gameModeBadge').textContent = labels[mode];
+        nextGameQuestion();
+    }
+
+    function nextGameQuestion() {
+        currentGameQ = generateQuestion(currentGameMode);
+        document.getElementById('gameQuestion').textContent = currentGameQ.q;
+        document.getElementById('gameFeedback').textContent = "";
+        const optContainer = document.getElementById('gameOptions');
+        optContainer.innerHTML = "";
+
+        currentGameQ.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = opt;
+            btn.onclick = () => checkGameAnswer(opt, btn);
+            optContainer.appendChild(btn);
+        });
+    }
+
+    function checkGameAnswer(selected, btnEl) {
+        playClickSound();
+        const fb = document.getElementById('gameFeedback');
+        if (selected === currentGameQ.a) {
+            btnEl.style.background = "#55efc4";
+            btnEl.style.borderColor = "#00b894";
+            state.gameBenar++;
+            addStars(10);
+            document.getElementById('gameScoreBadge').textContent = `Benar: ${state.gameBenar}`;
+            fb.style.color = "#00b894";
+            fb.textContent = "🎉 Benar! Hebat sekali! Kamu dapat +10 bintang!";
+            launchConfetti();
+            speakText("Benar! Hebat sekali! Kamu dapat bintang!");
+            setTimeout(nextGameQuestion, 1600);
+        } else {
+            btnEl.style.background = "#fab1a0";
+            btnEl.style.borderColor = "#d63031";
+            fb.style.color = "#d63031";
+            fb.textContent = "❌ Belum tepat, coba lagi ya!";
+            speakText("Belum tepat, coba lagi ya");
+        }
+    }
+
+    // ================= SIMULASI EKOSISTEM =================
+    const simData = {
+        sawah: {
+            title: "EKOSISTEM SAWAH",
+            nodes: [
+                { icon: "🌾", name: "Padi" },
+                { icon: "🐭", name: "Tikus" },
+                { icon: "🐍", name: "Ular" },
+                { icon: "🦅", name: "Elang" },
+                { icon: "🍄", name: "Pengurai" }
+            ],
+            removedIdx: -1,
+            warning: "Kalau Tikus hilang, Ular kelaparan! Kalau Padi hilang, semua kelaparan. Rantai jadi TIDAK SEIMBANG!"
+        },
+        kebun: {
+            title: "EKOSISTEM KEBUN",
+            nodes: [
+                { icon: "🍃", name: "Daun" },
+                { icon: "🐛", name: "Ulat" },
+                { icon: "🐦", name: "Burung" },
+                { icon: "🐈", name: "Kucing" },
+                { icon: "🍄", name: "Pengurai" }
+            ],
+            removedIdx: -1,
+            warning: "Kalau Ulat hilang, Burung kelaparan dan daun tumbuh terlalu lebat! Kalau Daun hilang, semua kelaparan. Rantai jadi TIDAK SEIMBANG!"
+        },
+        laut: {
+            title: "EKOSISTEM LAUT",
+            nodes: [
+                { icon: "🦠", name: "Fitoplankton" },
+                { icon: "🐟", name: "Ikan Kecil" },
+                { icon: "🐠", name: "Ikan Besar" },
+                { icon: "🦈", name: "Hiu" },
+                { icon: "🧫", name: "Pengurai" }
+            ],
+            removedIdx: -1,
+            warning: "Kalau Ikan Kecil hilang, Ikan Besar dan Hiu kelaparan! Kalau Fitoplankton hilang, semua biota laut kelaparan. Rantai jadi TIDAK SEIMBANG!"
+        },
+        hutan: {
+            title: "EKOSISTEM HUTAN",
+            nodes: [
+                { icon: "🌱", name: "Rumput" },
+                { icon: "🐇", name: "Kelinci" },
+                { icon: "🦊", name: "Rubah" },
+                { icon: "🐯", name: "Harimau" },
+                { icon: "🍄", name: "Pengurai" }
+            ],
+            removedIdx: -1,
+            warning: "Kalau Kelinci hilang, Rubah dan Harimau kelaparan! Kalau Rumput hilang, semua hewan hutan kelaparan. Rantai jadi TIDAK SEIMBANG!"
+        }
+    };
+
+    let activeSimKey = 'sawah';
+
+    function setSimEnv(key) {
+        playClickSound();
+        activeSimKey = key;
+        simData[key].removedIdx = -1;
+        document.getElementById('simAlertBox').style.background = "#fff";
+        document.getElementById('simAlertBox').style.color = "#2d3436";
+        document.getElementById('simAlertBox').textContent = `Ekosistem ${simData[key].title} dalam keadaan SEIMBANG!`;
+        drawSimCanvas();
+    }
+
+    function drawSimCanvas() {
+        const canvas = document.getElementById('simCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const env = simData[activeSimKey];
+
+        ctx.fillStyle = "#f8f9fa";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#00b894";
+        ctx.font = "bold 22px Fredoka, sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(env.title, canvas.width / 2, 42);
+
+        const startX = 75;
+        const gap = 122;
+        const y = 155;
+
+        env.nodes.forEach((node, idx) => {
+            const x = startX + idx * gap;
+            const isRemoved = env.removedIdx === idx;
+
+            // Lingkaran node
+            ctx.beginPath();
+            ctx.arc(x, y, 42, 0, Math.PI * 2);
+            ctx.fillStyle = isRemoved ? "#fab1a0" : "#ffeaa7";
+            ctx.fill();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = isRemoved ? "#d63031" : "#00b894";
+            ctx.stroke();
+
+            // Ikon
+            ctx.font = "36px Arial";
+            ctx.fillText(isRemoved ? "❌" : node.icon, x, y + 12);
+
+            // Nama
+            ctx.fillStyle = isRemoved ? "#d63031" : "#2d3436";
+            ctx.font = "bold 14px Nunito, sans-serif";
+            ctx.fillText(isRemoved ? `${node.name} (HILANG)` : node.name, x, y + 65);
+
+            // Panah ke kanan
+            if (idx < env.nodes.length - 1) {
+                ctx.fillStyle = "#0984e3";
+                ctx.font = "bold 24px Arial";
+                ctx.fillText("➔", x + gap / 2, y + 8);
+            }
+        });
+    }
+
+    function hapusSatuRantai() {
+        playClickSound();
+        const env = simData[activeSimKey];
+        // Pilih acak indeks 0, 1, atau 2 (Produsen, Konsumen 1, atau Konsumen 2)
+        env.removedIdx = Math.floor(Math.random() * 3);
+        drawSimCanvas();
+
+        const box = document.getElementById('simAlertBox');
+        box.style.background = "#ff7675";
+        box.style.color = "#fff";
+        box.textContent = "⚠️ " + env.warning;
+        speakText(env.warning);
+    }
+
+    function resetSimulasi() {
+        playClickSound();
+        setSimEnv(activeSimKey);
+        speakText("Ekosistem kembali pulih dan seimbang!");
+    }
+
+    // ================= KUIS ACAK 10 SOAL =================
+    let quizQuestions = [];
+
+    function mulaiKuis() {
+        playClickSound();
+        quizQuestions = [];
+        const modes = ['peran', 'urut', 'makan', 'jaring', 'peran', 'urut', 'makan', 'jaring', 'peran', 'jaring'];
+        for (let i = 0; i < 10; i++) {
+            quizQuestions.push(generateQuestion(modes[i]));
+        }
+
+        const container = document.getElementById('quizContainer');
+        container.innerHTML = "";
+        document.getElementById('quizResultBox').style.display = "none";
+        document.getElementById('quizSubmitWrap').style.display = "block";
+
+        quizQuestions.forEach((item, idx) => {
+            const card = document.createElement('div');
+            card.className = 'quiz-question-card';
+            let html = `<p style="font-weight:800; font-size:1.05rem;">${idx + 1}. ${item.q}</p>`;
+            item.options.forEach(opt => {
+                html += `
+                    <label class="radio-label">
+                        <input type="radio" name="q_${idx}" value="${opt}">
+                        <span>${opt}</span>
+                    </label>
+                `;
+            });
+            card.innerHTML = html;
+            container.appendChild(card);
+        });
+
+        speakText("Kuis acak dimulai. Silakan jawab sepuluh soal dengan teliti!");
+    }
+
+    function kumpulkanKuis() {
+        playClickSound();
+        let benar = 0;
+        for (let i = 0; i < quizQuestions.length; i++) {
+            const selected = document.querySelector(`input[name="q_${i}"]:checked`);
+            if (!selected) {
+                alert(`Soal nomor ${i + 1} belum dijawab! Ayo lengkapi semua soal dulu ya.`);
+                return;
+            }
+            if (selected.value === quizQuestions[i].a) {
+                benar++;
+            }
+        }
+
+        const nilai = benar * 10;
+        let predikat = "Belum Memenuhi";
+        if (nilai >= 90) predikat = "Sangat Baik";
+        else if (nilai >= 70) predikat = "Baik";
+        else if (nilai >= 50) predikat = "Cukup";
+
+        state.nilaiKuis = nilai;
+        state.predikat = predikat;
+        addStars(benar * 5);
+
+        const resBox = document.getElementById('quizResultBox');
+        resBox.style.display = "block";
+        resBox.innerHTML = `
+            <h3 style="font-family:'Fredoka',cursive; font-size:1.6rem; color:#00b894;">Hasil Kuis Kamu</h3>
+            <p style="font-size:1.2rem; font-weight:800; margin:8px 0;">Jawaban Benar: ${benar} dari 10 Soal</p>
+            <p style="font-size:1.8rem; font-weight:900; color:#e67e22;">Nilai: ${nilai}</p>
+            <p style="font-size:1.2rem; font-weight:800; color:#0984e3;">Predikat: ${predikat}</p>
+        `;
+
+        if (nilai >= 70) {
+            launchConfetti();
+        }
+
+        updateRekapSertifikat(false);
+        speakText(`Nilai kamu ${nilai}, predikat ${predikat}. Terima kasih sudah belajar bersama Ibu Uli Ulya!`);
+    }
+
+    // ================= REKAP & SERTIFIKAT =================
+    function updateRekapSertifikat(withVoice) {
+        if (withVoice) playClickSound();
+
+        document.getElementById('rekapSummary').innerHTML = `
+            👤 <strong>Nama Siswa:</strong> ${state.nama} (Absen: ${state.absen})<br>
+            🐾 <strong>Avatar Pilihan:</strong> ${state.avatarIcon} ${state.avatarName}<br>
+            🎮 <strong>Game Dijawab Benar:</strong> ${state.gameBenar} soal (Total Bintang: ⭐ ${state.stars})<br>
+            📝 <strong>Nilai Kuis Akhir:</strong> ${state.nilaiKuis} — <strong>Predikat:</strong> ${state.predikat}
+        `;
+
+        document.getElementById('certNama').textContent = state.nama;
+        document.getElementById('certAbsen').textContent = state.absen;
+        document.getElementById('certAvatar').textContent = `${state.avatarIcon} ${state.avatarName}`;
+        document.getElementById('certNilai').textContent = state.nilaiKuis;
+        document.getElementById('certPredikat').textContent = state.predikat;
+
+        const photoBox = document.getElementById('certPhotoBox');
+        if (state.selfieDataUrl) {
+            photoBox.innerHTML = `<img src="${state.selfieDataUrl}" alt="Foto Siswa">`;
+        } else {
+            photoBox.textContent = state.avatarIcon;
+        }
+
+        if (withVoice) {
+            launchConfetti();
+            speakText(`Terima kasih ${state.nama}, kamu meraih nilai ${state.nilaiKuis} dengan predikat ${state.predikat}, bersama Ibu Uli Ulya.`);
+        }
+    }
+
+    // ================= INIT SAAT HALAMAN DIBUKA =================
+    window.addEventListener('DOMContentLoaded', () => {
+        drawAIFrame();
+        nextGameQuestion();
+        drawSimCanvas();
+        mulaiKuis();
+    });
+</script>
+</body>
+</html>
